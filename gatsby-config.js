@@ -7,8 +7,8 @@ module.exports = {
     {
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: "",
-        dataset: "",
+        projectId: "fichfc1s",
+        dataset: "production",
       },
     },
     "gatsby-plugin-emotion",
