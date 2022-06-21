@@ -8,6 +8,7 @@
     "gatsby"
   ],
   "scripts": {
+    "dev": "yarn develop",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
