@@ -8,6 +8,7 @@
     "gatsby"
   ],
   "scripts": {
+    "dev": "yarn develop",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
@@ -17,6 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@headlessui/react": "^1.6.5",
     "gatsby": "^4.4.0",
     "gatsby-plugin-emotion": "^7.4.0",
     "gatsby-plugin-image": "^2.4.0",
@@ -29,5 +31,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "gatsby-plugin-postcss": "^5.17.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.4"
   }
 }
