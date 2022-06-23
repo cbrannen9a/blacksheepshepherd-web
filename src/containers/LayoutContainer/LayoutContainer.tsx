@@ -2,17 +2,11 @@ import { graphql, StaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { Layout } from "../../components";
 
-const query = graphql`
-  query SiteTitleQuery {
+export const query = graphql`
+  {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
-      #   brand {
-      #     asset {
-      #       fluid(maxWidth: 683, maxHeight: 137) {
-      #         ...GatsbySanityImageFluid
-      #       }
-      #     }
-      #   }
+      siteUrl
       primaryColor {
         hex
       }
@@ -21,6 +15,17 @@ const query = graphql`
       }
       backgroundColor {
         hex
+      }
+      description
+      keywords
+      mainNav {
+        title
+        slug {
+          current
+        }
+      }
+      footerNav {
+        id
       }
     }
   }
@@ -46,7 +51,15 @@ const LayoutContainer = ({ children }) => {
         }
 
         const {
-          site: { primaryColor, accentColor, backgroundColor, title, brand },
+          site: {
+            primaryColor,
+            accentColor,
+            backgroundColor,
+            title,
+            brand,
+            mainNav,
+            footerNav,
+          },
         } = data;
 
         const colours = {
@@ -63,6 +76,8 @@ const LayoutContainer = ({ children }) => {
             onHideNav={handleHideNav}
             onShowNav={handleShowNav}
             colours={colours}
+            mainNav={mainNav}
+            footerNav={footerNav}
           >
             {children}
           </Layout>

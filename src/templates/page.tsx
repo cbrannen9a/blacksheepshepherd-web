@@ -26,7 +26,11 @@ const PagesTemplate = ({ data, errors }) => {
     );
   }
 
-  return <LayoutContainer>{page.route.title}</LayoutContainer>;
+  return (
+    <LayoutContainer>
+      <h1 className="text-3xl font-bold underline">{page.route.title}</h1>
+    </LayoutContainer>
+  );
 };
 
 export default PagesTemplate;
