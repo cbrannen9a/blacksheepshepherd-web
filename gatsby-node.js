@@ -2,10 +2,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityPage(filter: { route: { slug: { current: { ne: null } } } }) {
+      allSanityPage(filter: { route: { title: { ne: null } } }) {
         edges {
           node {
             route {
+              id
               slug {
                 current
               }
@@ -21,11 +22,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = result.data.allSanityPage.edges || [];
   pages.forEach((edge, index) => {
-    const path = `/${edge.node.route.slug.current}`;
+    const { route } = edge.node;
+    const { slug } = route;
+    const path = `/${slug?.current ? slug.current : ""}`;
     createPage({
       path,
       component: require.resolve("./src/templates/page.tsx"),
-      context: { slug: edge.node.route.slug.current },
+      context: { routeId: route.id },
     });
   });
 };

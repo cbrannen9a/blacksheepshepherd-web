@@ -21,7 +21,7 @@ const NotFoundPage: FC = () => {
           </>
         ) : null}
         <br />
-        <Link to="/">Go home</Link>.
+        <Link to="/">Home</Link>.
       </p>
     </main>
   );

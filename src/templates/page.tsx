@@ -1,9 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { LayoutContainer } from "../containers";
 
 export const query = graphql`
-  query PageTemplateQuery($slug: String!) {
-    page: sanityPage(route: { slug: { current: { eq: $slug } } }) {
+  query PageTemplateQuery($routeId: String!) {
+    page: sanityPage(route: { id: { eq: $routeId } }) {
       route {
         title
       }
@@ -12,9 +13,7 @@ export const query = graphql`
   }
 `;
 
-const PagesTemplate = (props) => {
-  const { data, errors } = props;
-
+const PagesTemplate = ({ data, errors }) => {
   if (errors) {
     return <div>Error</div>;
   }
@@ -27,7 +26,7 @@ const PagesTemplate = (props) => {
     );
   }
 
-  return <div>{page.route.title}</div>;
+  return <LayoutContainer>{page.route.title}</LayoutContainer>;
 };
 
 export default PagesTemplate;
