@@ -1,6 +1,7 @@
 import { graphql, StaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { Layout } from "../../components";
+import { Colors } from "../../types";
 
 export const query = graphql`
   {
@@ -8,6 +9,9 @@ export const query = graphql`
       title
       siteUrl
       primaryColor {
+        hex
+      }
+      secondaryColor {
         hex
       }
       accentColor {
@@ -53,6 +57,7 @@ const LayoutContainer = ({ children }) => {
         const {
           site: {
             primaryColor,
+            secondaryColor,
             accentColor,
             backgroundColor,
             title,
@@ -62,8 +67,9 @@ const LayoutContainer = ({ children }) => {
           },
         } = data;
 
-        const colours = {
+        const colors: Colors = {
           primary: primaryColor.hex,
+          secondary: secondaryColor.hex,
           accent: accentColor.hex,
           background: backgroundColor.hex,
         };
@@ -75,7 +81,7 @@ const LayoutContainer = ({ children }) => {
             brand={brand}
             onHideNav={handleHideNav}
             onShowNav={handleShowNav}
-            colours={colours}
+            colors={colors}
             mainNav={mainNav}
             footerNav={footerNav}
           >

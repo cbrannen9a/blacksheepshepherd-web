@@ -1,31 +1,16 @@
-/* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from "react";
+import React, { Fragment, FC } from "react";
 import { Popover, Transition } from "@headlessui/react";
-// import {
-//   BookmarkAltIcon,
-//   CalendarIcon,
-//   ChartBarIcon,
-//   CursorClickIcon,
-//   MenuIcon,
-//   PhoneIcon,
-//   PlayIcon,
-//   RefreshIcon,
-//   ShieldCheckIcon,
-//   SupportIcon,
-//   ViewGridIcon,
-//   XIcon,
-// } from "@heroicons/react/outline";
-// import { ChevronDownIcon } from "@heroicons/react/solid";
+import { Link } from "gatsby";
+import type { Route, Colors } from "../../../types";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const Header = () => {
+const Header: FC<Props> = ({ mainNav, colors }) => {
   return (
-    <Popover className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+    <Popover className="relative">
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6"
+        style={{ backgroundColor: colors.primary }}
+      >
+        <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span className="sr-only">Workflow</span>
@@ -37,7 +22,10 @@ const Header = () => {
             </a>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
-            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button
+              style={{ backgroundColor: colors.background }}
+              className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            >
               <span className="sr-only">Open menu</span>
               <div className="h-6 w-6" aria-hidden="true">
                 =
@@ -46,18 +34,15 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
-              href="#"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              Sign up
-            </a>
+            {mainNav.map((navItem) => (
+              <Link
+                key={navItem.title}
+                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                to={navItem.slug?.current ?? "/"}
+              >
+                {navItem.title}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -96,34 +81,20 @@ const Header = () => {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </a>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
-              </div>
-              <div>
-                <a
-                  href="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?{" "}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
-                  </a>
-                </p>
+              <div className="mt-6">
+                <nav className="grid gap-y-8">
+                  {mainNav.map((navItem) => (
+                    <Link
+                      key={navItem.title}
+                      to={navItem.slug?.current ?? "/"}
+                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                    >
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {navItem.title}
+                      </span>
+                    </Link>
+                  ))}
+                </nav>
               </div>
             </div>
           </div>
@@ -132,5 +103,10 @@ const Header = () => {
     </Popover>
   );
 };
+
+interface Props {
+  mainNav: Route[];
+  colors: Colors;
+}
 
 export default Header;
