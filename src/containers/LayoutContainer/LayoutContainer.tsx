@@ -28,8 +28,16 @@ export const query = graphql`
           current
         }
       }
+      _rawFooterText
       footerNav {
-        id
+        title
+        slug {
+          current
+        }
+      }
+      copyrightText
+      copyrightLink {
+        href
       }
     }
   }
@@ -64,6 +72,9 @@ const LayoutContainer = ({ children }) => {
             brand,
             mainNav,
             footerNav,
+            _rawFooterText,
+            copyrightText,
+            copyrightLink,
           },
         } = data;
 
@@ -84,6 +95,9 @@ const LayoutContainer = ({ children }) => {
             colors={colors}
             mainNav={mainNav}
             footerNav={footerNav}
+            footerText={_rawFooterText}
+            copyrightText={copyrightText}
+            copyrightLink={copyrightLink}
           >
             {children}
           </Layout>
