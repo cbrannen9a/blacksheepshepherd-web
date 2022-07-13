@@ -10,6 +10,10 @@ export interface Slug {
   current: string;
 }
 
+export interface Link {
+  href: string;
+}
+
 export interface Colors {
   primary: string;
   secondary: string;
@@ -22,6 +26,7 @@ export type ContentTypes =
   | "cards"
   | "banner"
   | "textSection"
+  | "imageSection"
   | "contentPreview"
   | "route"
   | "tags";
@@ -63,9 +68,17 @@ export interface Tag {
   _key: string;
   title: string;
   description?: PortableTextBlock[];
-  link?: string;
+  link?: Link;
   route?: { slug: Slug };
   media?: SanityImageAsset;
+}
+
+export interface ImageSectionContent extends BaseContent {
+  _type: "imageSection";
+  label: string;
+  link?: Link;
+  text: PortableTextBlock[];
+  image: { alt?: string; asset: SanityImageAsset; caption?: string };
 }
 
 export interface TextSectionContent extends BaseContent {
@@ -83,4 +96,5 @@ export type Content =
   | HeroContent
   | TagsContent
   | TextSectionContent
+  | ImageSectionContent
   | RouteReference;
