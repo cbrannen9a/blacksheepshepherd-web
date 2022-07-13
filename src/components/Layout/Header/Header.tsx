@@ -3,7 +3,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Link } from "gatsby";
 import type { Route, Colors } from "../../../types";
 
-const Header: FC<Props> = ({ mainNav, colors }) => {
+const Header: FC<Props> = ({ siteTitle, mainNav, colors }) => {
   return (
     <Popover className="relative">
       <div
@@ -12,14 +12,14 @@ const Header: FC<Props> = ({ mainNav, colors }) => {
       >
         <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Workflow</span>
+            <Link to="/">
+              <span className="sr-only">{siteTitle}</span>
               <img
                 className="h-8 w-auto sm:h-10"
                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt=""
+                alt={siteTitle}
               />
-            </a>
+            </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
             <Popover.Button
@@ -107,6 +107,7 @@ const Header: FC<Props> = ({ mainNav, colors }) => {
 interface Props {
   mainNav: Route[];
   colors: Colors;
+  siteTitle: string;
 }
 
 export default Header;

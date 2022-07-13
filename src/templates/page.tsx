@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { LayoutContainer } from "../containers";
+import { Content } from "../components";
 
 export const query = graphql`
   query PageTemplateQuery($routeId: String!) {
@@ -28,7 +29,7 @@ const PagesTemplate = ({ data, errors }) => {
 
   return (
     <LayoutContainer>
-      <h1 className="text-3xl font-bold underline">{page.route.title}</h1>
+      <Content content={page._rawContent} />
     </LayoutContainer>
   );
 };
