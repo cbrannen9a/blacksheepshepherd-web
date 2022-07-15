@@ -1,4 +1,5 @@
 import { PortableTextBlock } from "@portabletext/types";
+import { Link } from "gatsby";
 import React, { FC } from "react";
 import { Colors, Route } from "../../../types";
 import { BlockContent } from "../../Common";
@@ -144,26 +145,15 @@ const Footer: FC<Props> = ({
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
               Useful links
             </h6>
-            <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Pricing
-              </a>
-            </p>
-            <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Settings
-              </a>
-            </p>
-            <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Orders
-              </a>
-            </p>
-            <p>
-              <a href="#!" className="text-gray-600">
-                Help
-              </a>
-            </p>
+            {footerNav.map((navItem) => (
+              <p key={navItem.title} className="mb-4">
+                <Link
+                  to={navItem.slug?.current ? `/${navItem.slug?.current}` : "/"}
+                >
+                  {navItem.title}
+                </Link>
+              </p>
+            ))}
           </div>
         </div>
       </div>

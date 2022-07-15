@@ -39,6 +39,11 @@ export const query = graphql`
       copyrightLink {
         href
       }
+      brand {
+        asset {
+          url
+        }
+      }
     }
   }
 `;
