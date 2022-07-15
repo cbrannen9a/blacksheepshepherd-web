@@ -3,6 +3,7 @@ import { PortableTextBlock } from "@portabletext/types";
 import type { Colors, Route } from "../../types";
 import Footer from "./Footer";
 import Header from "./Header";
+import { SanityImageAsset } from "@sanity/asset-utils";
 
 const Layout: FC<Props> = ({
   children,
@@ -13,10 +14,16 @@ const Layout: FC<Props> = ({
   footerText,
   copyrightText,
   copyrightLink,
+  brand,
 }) => {
   return (
     <div style={{ backgroundColor: colors.background }}>
-      <Header siteTitle={siteTitle} mainNav={mainNav} colors={colors} />
+      <Header
+        brand={brand}
+        siteTitle={siteTitle}
+        mainNav={mainNav}
+        colors={colors}
+      />
       <main>
         <div style={{ minHeight: "100vh" }}>{children}</div>
       </main>
@@ -35,7 +42,7 @@ interface Props {
   children?: ReactNode;
   showNav: boolean;
   siteTitle: string;
-  brand: any;
+  brand: { asset: SanityImageAsset };
   onHideNav: () => void;
   onShowNav: () => void;
   colors: Colors;
