@@ -28,11 +28,23 @@ const Header: FC<Props> = ({ brand, siteTitle, mainNav, colors }) => {
           <div className="-mr-2 -my-2 md:hidden">
             <Popover.Button
               style={{ backgroundColor: colors.background }}
-              className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
             >
               <span className="sr-only">Open menu</span>
               <div className="h-6 w-6" aria-hidden="true">
-                =
+                <svg
+                  height="24px"
+                  id="Layer_1"
+                  // style={{"enable-background:new 0 0 32 32;"}}
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width="24px"
+                  // xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  // xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" />
+                </svg>
               </div>
             </Popover.Button>
           </div>
@@ -46,7 +58,7 @@ const Header: FC<Props> = ({ brand, siteTitle, mainNav, colors }) => {
                   color: colors.secondary,
                 }}
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
-                to={navItem.slug?.current ?? "/"}
+                to={navItem.slug?.current ? `/${navItem.slug?.current}` : "/"}
               >
                 {navItem.title}
               </Link>
@@ -87,7 +99,19 @@ const Header: FC<Props> = ({ brand, siteTitle, mainNav, colors }) => {
                   <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
                     <span className="sr-only">Close menu</span>
                     <div className="h-6 w-6" aria-hidden="true">
-                      X
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <g id="close">
+                          <path
+                            id="x"
+                            d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"
+                          />
+                        </g>
+                      </svg>
                     </div>
                   </Popover.Button>
                 </div>
