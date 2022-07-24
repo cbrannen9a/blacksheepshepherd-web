@@ -6,7 +6,7 @@ const ImageSection: FC<
   Pick<ImageSectionContent, "text" | "image" | "link">
 > = ({ text, image, link }) => (
   <div className="m-1">
-    <Image value={image.asset} alt={image?.alt || ""} />
+    {image?.asset ? <Image value={image.asset} alt={image?.alt || ""} /> : null}
     <div className="text-base text-gray-900 prose">
       <BlockContent text={text} />
     </div>
